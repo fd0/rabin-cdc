@@ -18,15 +18,10 @@ int main(void) {
         size_t len = fread(buf, 1, sizeof(buf), stdin);
         uint8_t *ptr = &buf[0];
 
-        // printf("read %zd bytes\n", len);
-
         bytes += len;
 
         while (1) {
-            // printf("  rabin_next_chunk(%p, %zd)\n", ptr, len);
             int remaining = rabin_next_chunk(hash, ptr, len);
-
-            // printf("  rabin remaining: %d bytes, len %zd\n", remaining, len);
 
             if (remaining < 0) {
                 break;
@@ -35,15 +30,11 @@ int main(void) {
             len -= remaining;
             ptr += remaining;
 
-            // printf("remaining: %d, len %zd, ptr %p\n", remaining, len, ptr);
-
             printf("%d %016llx\n",
                 last_chunk.length,
                 (long long unsigned int)last_chunk.cut_fingerprint);
 
             chunks++;
-
-            // printf("  next bytes: %02x%02x%02x%02x\n", *ptr, *(ptr+1), *(ptr+2), *(ptr+3));
         }
     }
 

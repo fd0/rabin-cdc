@@ -1,4 +1,4 @@
-CFLAGS+=-Wall -ggdb3 -std=gnu99 -O2
+CFLAGS+=-Wall -W -ggdb3 -std=gnu99
 
 
 .PHONY: all clean clean-rabin

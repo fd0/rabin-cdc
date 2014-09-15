@@ -107,7 +107,7 @@ void rabin_reset(struct rabin_t *h) {
 }
 
 int rabin_next_chunk(struct rabin_t *h, uint8_t *buf, unsigned int len) {
-    for (int i = 0; i < len; i++) {
+    for (unsigned int i = 0; i < len; i++) {
         uint8_t b = *buf++;
 
         rabin_slide(h, b);

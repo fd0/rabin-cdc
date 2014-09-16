@@ -112,10 +112,10 @@ int rabin_next_chunk(struct rabin_t *h, uint8_t *buf, unsigned int len) {
 
         rabin_slide(h, b);
 
-        if ((h->count+i+1 >= MINSIZE && ((h->digest & MASK) == 0)) || h->count+i+1 >= MAXSIZE) {
-            h->count += i+1;
-            h->pos += i+1;
+        h->count++;
+        h->pos++;
 
+        if ((h->count >= MINSIZE && ((h->digest & MASK) == 0)) || h->count >= MAXSIZE) {
             last_chunk.start = h->start;
             last_chunk.length = h->count;
             last_chunk.cut_fingerprint = h->digest;

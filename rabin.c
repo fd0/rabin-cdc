@@ -151,8 +151,16 @@ struct rabin_t *rabin_init(void) {
 }
 
 
-void rabin_finalize(struct rabin_t *h) {
+struct chunk_t *rabin_finalize(struct rabin_t *h) {
+    if (h->count == 0) {
+        last_chunk.start = 0;
+        last_chunk.length = 0;
+        last_chunk.cut_fingerprint = 0;
+        return NULL;
+    }
+
     last_chunk.start = h->start;
     last_chunk.length = h->count;
     last_chunk.cut_fingerprint = h->digest;
+    return &last_chunk;
 }

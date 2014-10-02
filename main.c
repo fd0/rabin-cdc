@@ -38,12 +38,12 @@ int main(void) {
         }
     }
 
-    rabin_finalize(hash);
-    chunks++;
-
-    printf("%d %016llx\n",
-        last_chunk.length,
-        (long long unsigned int)last_chunk.cut_fingerprint);
+    if (rabin_finalize(hash) != NULL) {
+        chunks++;
+        printf("%d %016llx\n",
+            last_chunk.length,
+            (long long unsigned int)last_chunk.cut_fingerprint);
+    }
 
     unsigned int avg = 0;
     if (chunks > 0)
